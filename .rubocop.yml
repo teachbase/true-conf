@@ -1,0 +1,30 @@
+AllCops:
+  Exclude:
+    - "bin/*"
+    - "tmp/**/*"
+    - "Gemfile"
+    - "vendor/**/*"
+    - "gemfiles/**/*"
+  DisplayCopNames: true
+  TargetRubyVersion: 2.5
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: no_comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: no_comma
+
+Layout/ParameterAlignment:
+  EnforcedStyle: with_first_parameter
+
+# See https://github.com/rubocop-hq/rubocop/issues/4222
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"
+
+Naming/FileName:
+  Exclude:
+    - "lib/true-conf.rb"
