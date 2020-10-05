@@ -32,11 +32,10 @@ module TrueConf
 
     operation :conferences do
       http_method :get
-      path { '/conferences' }
+      path { '/conferences/0415605552' }
 
-      response(200) do |aaa, bbb, ccc|
-        binding.pry
-        # |*res| Entity::Payment.build(*res) }
+      response(200) do |*res|
+        Entity::Conference.build(*res)
       end
 
       response(400, 404) do
