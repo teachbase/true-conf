@@ -4,10 +4,19 @@ module TrueConf
   class Response
     extend Dry::Initializer
 
+    def error?
+      is_a?(TrueConf::Error)
+    end
+
+    def success?
+      !error?
+    end
+
     class << self
       def build(*res)
         body = res.last
-        new JSON.parse(body.first)["conference"]
+        attr = name.split('::').last.downcase
+        new JSON.parse(body.first)[attr]
       end
 
       def new(opts)
