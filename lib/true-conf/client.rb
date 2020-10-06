@@ -29,19 +29,5 @@ module TrueConf
     security do
       token_auth(access_token(client_id, client_secret), inside: :query)
     end
-
-    operation :conferences do
-      http_method :get
-      path { '/conferences/0415605552' }
-
-      response(200) do |*res|
-        Entity::Conference.build(*res)
-      end
-
-      response(400, 404) do
-        binding.pry
-        # |*res| Error.build(*res)
-      end
-    end
   end
 end
