@@ -1,0 +1,61 @@
+{
+  "conference": {
+    "id": "5576502892",
+    "type": 0,
+    "topic": "Topic of conference",
+    "owner": "user1@server.name",
+    "description": "Description of conference",
+    "max_podiums": 25,
+    "max_participants": 25,
+    "schedule": {
+      "type": 1,
+      "start_time": 1602018000,
+      "time_offset": 0,
+      "duration": 600
+    },
+    "url": "https://server.name/c/webinar",
+    "webclient_url": "https://server.name/webrtc/webinar",
+    "allow_guests": true,
+    "rights": {
+      "guest": {
+        "chat_send": true,
+        "chat_rcv": true,
+        "slide_show_send": true,
+        "slide_show_rcv": true,
+        "white_board_send": true,
+        "white_board_rcv": true,
+        "file_transfer_send": true,
+        "file_transfer_rcv": true,
+        "desktop_sharing": true,
+        "recording": true,
+        "audio_send": true,
+        "audio_rcv": true,
+        "video_send": true,
+        "video_rcv": true
+      },
+      "user": {
+        "chat_send": true,
+        "chat_rcv": true,
+        "slide_show_send": true,
+        "slide_show_rcv": true,
+        "white_board_send": true,
+        "white_board_rcv": true,
+        "file_transfer_send": true,
+        "file_transfer_rcv": true,
+        "desktop_sharing": true,
+        "recording": true,
+        "audio_send": true,
+        "audio_rcv": true,
+        "video_send": true,
+        "video_rcv": true
+      }
+    },
+    "auto_invite": 0,
+    "state": "stopped",
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "recording": 0
+  }
+}

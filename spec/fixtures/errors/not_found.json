@@ -1,0 +1,14 @@
+{
+  "error": {
+    "code": 404,
+    "message": "Not Found",
+    "errors": [
+      {
+        "reason": "conferenceNotFound",
+        "message": "Conference '55765028992' is not found.",
+        "locationType": "path",
+        "location": "conference_id"
+      }
+    ]
+  }
+}

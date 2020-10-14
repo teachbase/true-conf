@@ -7,6 +7,12 @@ module TrueConf
       option :owner, proc(&:to_s), optional: true
       option :state, proc(&:to_s), optional: true
 
+      %w[running stopped].each do |method|
+        define_method("#{method}?") do
+          !state.nil? && state == method
+        end
+      end
+
       class << self
         def build(*res)
           body = res.last
