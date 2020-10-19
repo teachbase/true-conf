@@ -1,4 +1,4 @@
-# TrueConf Server API Client
+# TrueConf Server API Client [![TrueConf](https://circleci.com/gh/paderinandrey/true-conf.svg?style=svg)](https://circleci.com/gh/paderinandrey/true-conf)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/true/conf`. To experiment with that code, run `bin/console` for an interactive prompt.
 
