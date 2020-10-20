@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative './schedule'
-
 module TrueConf
   module Entity
     class Participant < TrueConf::Response

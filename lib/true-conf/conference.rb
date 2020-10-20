@@ -43,13 +43,8 @@ module TrueConf
                       :recording)
       end
 
-      response(200) do |*res|
-        Entity::Conference.build(*res)
-      end
-
-      response(400, 403, 404) do |*res|
-        Error.build(*res)
-      end
+      response(200) { |*res| Entity::Conference.build(*res) }
+      response(400, 403, 404) { |*res| Error.build(*res) }
     end
 
     operation :update do
@@ -79,13 +74,8 @@ module TrueConf
                       :recording)
       end
 
-      response(200) do |*res|
-        Entity::Conference.build(*res)
-      end
-
-      response(400, 403, 404) do |*res|
-        Error.build(*res)
-      end
+      response(200) { |*res| Entity::Conference.build(*res) }
+      response(400, 403, 404) { |*res| Error.build(*res) }
     end
 
     operation :delete do
