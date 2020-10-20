@@ -55,6 +55,44 @@ user.busy?       => false
 user.multihost?  => false
 ```
 
+### Invitations
+Get Invitation List
+```ruby
+invitations = client.by_conference(conference_id: "3390770247")
+                    .invitations
+                    .list
+```
+
+Get Invitation
+```ruby
+invitation = client.by_conference(conference_id: "3390770247")
+                   .invitations
+                   .get(invitation_id: "admin")
+
+invitation.user?    # true
+invitation.custom?  # false
+invitation.owner?   # true
+```
+
+Add Invitation
+```ruby
+invitation = client.by_conference(conference_id: "3390770247")
+                   .invitations
+                   .add(id: "user", display_name: "user")
+```
+Update Invitation
+```ruby
+invitation = client.by_conference(conference_id: "3390770247")
+                   .invitations
+                   .update(invitation_id: "user", display_name: "andy")
+```
+Delete Invitation
+```ruby
+invitation = client.by_conference(conference_id: "3390770247")
+                   .invitations
+                   .delete(invitation_id: "user")
+```
+
 ### Error
 
 

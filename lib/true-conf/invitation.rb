@@ -31,7 +31,7 @@ module TrueConf
         http_method :post
         path { "/conferences/#{conference_id}/invitations" }
         format 'json'
-        query { options.slice(:id, :display_name, :url_type) }
+        body { options.slice(:id, :display_name, :url_type) }
 
         response(200) { |*res| Entity::Invitation.build(*res) }
         response(400, 403, 404) { |*res| Error.build(*res) }
@@ -45,9 +45,9 @@ module TrueConf
         http_method :put
         path { "/conferences/#{conference_id}/invitations/#{invitation_id}" }
         format 'json'
-        query { options.slice(:display_name, :url_type) }
+        body { options.slice(:display_name, :url_type) }
 
-        response(200) { |*res| Entity::InvitationSimple.build(*res) }
+        response(200) { |*res| Entity::Invitation.build(*res) }
         response(400, 403, 404) { |*res| Error.build(*res) }
       end
 
