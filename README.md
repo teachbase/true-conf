@@ -21,14 +21,43 @@ Or install it yourself as:
     $ gem install true-conf
 
 ## Usage
+Initialize a client with `client_id` and `client_secret`:
 
-TODO: Write usage instructions here
+```ruby
+client = TrueConf::Client.new client_id: <client_id>,    # required
+                              client_secret: <client_secret>, # required
+                              api_server: <server_name>, # required
+                              version: '3.2' # optional, default: 3.2
+```
 
-## Development
+```ruby
+success?
+error?
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### Conferences
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+### Users
+
+Helpers methods
+```ruby
+user = client.users.get(user_id: "09369628")
+
+user.disabled?   => false
+user.enabled?    =>  true
+
+user.not_active? => false
+user.invalid?    => false
+user.offline?    => false
+user.online?     => true
+user.busy?       => false
+user.multihost?  => false
+```
+
+### Error
+
+
 
 ## Contributing
 
