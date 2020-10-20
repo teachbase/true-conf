@@ -9,7 +9,7 @@ module TrueConf
         http_method :get
         path { "/conferences/#{conference_id}/invitations" }
 
-        response(200) { |*res| Entity::InvitationList.build(*res) }
+        response(200) { |*res| Entity::InvitationList.build(*res).data }
         response(403, 404) { |*res| Error.build(*res) }
       end
 

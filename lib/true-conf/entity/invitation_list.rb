@@ -3,7 +3,7 @@
 module TrueConf
   module Entity
     class InvitationList < TrueConf::Response
-      option :invitations, [Entity::Invitation]
+      option :invitations, [Entity::Invitation], as: :data
 
       class << self
         def build(*res)
