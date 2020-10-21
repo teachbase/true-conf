@@ -39,20 +39,62 @@ error?
 
 
 ### Users
+https://developers.trueconf.ru/api/server/#api-Users
 
-Helpers methods
+**Entities**
+
 ```ruby
-user = client.users.get(user_id: "09369628")
+TrueConf::Entity::User
 
-user.disabled?   => false
-user.enabled?    =>  true
+user = client.by_user(id: "andy").get
+user.disabled?   # false
+user.enabled?    #  true
+user.not_active? # false
+user.invalid?    # false
+user.offline?    # false
+user.online?     # true
+user.busy?       # false
+user.multihost?  # false
 
-user.not_active? => false
-user.invalid?    => false
-user.offline?    => false
-user.online?     => true
-user.busy?       => false
-user.multihost?  => false
+```
+```ruby
+TrueConf::Entity::UserList
+
+```
+
+```ruby
+TrueConf::Entity::UserSimple
+
+```
+**Actions**
+```ruby
+users = client.users.all url_type:  "dynamic", # optional
+                         page_id:   1,         # optional
+                         page_size: 10,        # optional
+                         login_name: "Andy",   # optional
+                         display_name: "Andy", # optional
+                         first_name: "Andy",   # optional
+                         last_name: "",        # optional
+                         email: "andy@tb.com"  # optional
+# => TrueConf::Entity::UserList
+
+user = client.users.create(**params)
+# => TrueConf::Entity::User
+
+user = client.by_user(id: "andy").get
+# => TrueConf::Entity::User
+
+user = client.by_user(id: "andy").update(**params)
+# => TrueConf::Entity::User
+
+user = client.by_user(id: "andy").delete
+# => TrueConf::Entity::UserSimple
+
+user = client.by_user(id: "andy").disconnect
+# => TrueConf::Entity::UserSimple
+
+
+
 ```
 
 ### Invitations

@@ -1,0 +1,14 @@
+{
+  "error": {
+    "code": 404,
+    "message": "Not Found",
+    "errors": [
+      {
+        "reason": "userNotFound",
+        "message": "User 'user' is not found",
+        "locationType": "path",
+        "location": "user_id"
+      }
+    ]
+  }
+}

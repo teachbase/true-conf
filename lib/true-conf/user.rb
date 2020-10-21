@@ -2,24 +2,10 @@
 
 module TrueConf
   Client.scope :users do
-    operation :get do
-      option :user_id, proc(&:to_s)
-      option :url_type, proc(&:to_s), optional: true
+    path { '/users' }
+    format 'json'
 
-      http_method :get
-      path { "/users/#{user_id}" }
-      query { options.slice(:url_type) }
-
-      response(200) do |*res|
-        Entity::User.build(*res)
-      end
-
-      response(403, 404) do |*res|
-        Error.build(*res)
-      end
-    end
-
-    operation :list do
+    operation :all do
       option :url_type, proc(&:to_s), optional: true
       option :page_id, proc(&:to_i), optional: true
       option :page_size, proc(&:to_i), optional: true
@@ -30,19 +16,13 @@ module TrueConf
       option :email, proc(&:to_s), optional: true
 
       http_method :get
-      path { '/users' }
       query do
         options.slice(:url_type, :page_id, :page_size, :login_name,
                       :display_name, :first_name, :last_name, :email)
       end
 
-      response(200) do |*res|
-        Entity::UserList.build(*res)
-      end
-
-      response(400, 403, 404) do |*res|
-        Error.build(*res)
-      end
+      response(200) { |*res| Entity::UserList.build(*res) }
+      response(400, 403) { |*res| Error.build(*res) }
     end
 
     operation :create do
@@ -59,24 +39,32 @@ module TrueConf
       option :is_active, proc(&:to_i), optional: true
 
       http_method :post
-      path { '/users' }
-      format 'json'
       body do
         options.slice(:login_name, :email, :password, :display_name, :first_name, :last_name,
                       :company, :mobile_phone, :work_phone, :home_phone, :is_active)
       end
 
-      response(200) do |*res|
-        Entity::User.build(*res)
-      end
+      response(200) { |*res| Entity::User.build(*res) }
+      response(400, 403) { |*res| Error.build(*res) }
+    end
+  end
 
-      response(400, 403) do |*res|
-        Error.build(*res)
-      end
+  Client.scope :by_user do
+    option :id, proc(&:to_s)
+    path { "/users/#{id}" }
+    format 'json'
+
+    operation :get do
+      option :url_type, proc(&:to_s), optional: true
+
+      http_method :get
+      query { options.slice(:url_type) }
+
+      response(200) { |*res| Entity::User.build(*res) }
+      response(403, 404) { |*res| Error.build(*res) }
     end
 
     operation :update do
-      option :user_id, proc(&:to_s)
       option :url_type, proc(&:to_s), optional: true
       option :email, proc(&:to_s), optional: true
       option :password, proc(&:to_s), optional: true
@@ -90,38 +78,26 @@ module TrueConf
       option :is_active, proc(&:to_i), optional: true
 
       http_method :put
-      path { "/users/#{user_id}" }
-      format 'json'
       query { options.slice(:url_type) }
       body do
         options.slice(:login_name, :email, :password, :display_name, :first_name, :last_name,
                       :company, :mobile_phone, :work_phone, :home_phone, :is_active)
       end
 
-      response(200) do |*res|
-        Entity::User.build(*res)
-      end
-
-      response(400, 403, 404) do |*res|
-        Error.build(*res)
-      end
+      response(200) { |*res| Entity::User.build(*res) }
+      response(400, 403, 404) { |*res| Error.build(*res) }
     end
 
     operation :delete do
-      option :user_id, proc(&:to_s)
       http_method :delete
-      path { "/users/#{user_id}" }
-      format 'json'
 
       response(200) { |*res| Entity::UserSimple.build(*res) }
       response(403, 404) { |*res| Error.build(*res) }
     end
 
     operation :disconnect do
-      option :user_id, proc(&:to_s)
       http_method :post
-      path { "/users/#{user_id}/disconnect" }
-      format 'json'
+      path { '/disconnect' }
 
       response(200) { |*res| Entity::UserSimple.build(*res) }
       response(400, 403, 404) { |*res| Error.build(*res) }

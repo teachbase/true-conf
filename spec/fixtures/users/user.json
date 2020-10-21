@@ -1,0 +1,25 @@
+{
+  "user": {
+    "id": "admin",
+    "uid": "admin@ru1pe2.trueconf.name",
+    "avatar": null,
+    "login_name": "admin",
+    "email": "admin@ru1pe2.trueconf.name",
+    "display_name": "Admin",
+    "first_name": "Admin",
+    "last_name": "",
+    "company": "Teachbase",
+    "groups": [
+      {
+        "id": "@no_group",
+        "display_name": "Users without group",
+        "rights": []
+      }
+    ],
+    "mobile_phone": "+79876543210",
+    "work_phone": "(8555) 32-32-32",
+    "home_phone": "(8552) 123-123",
+    "is_active": 1,
+    "status": 0
+  }
+}

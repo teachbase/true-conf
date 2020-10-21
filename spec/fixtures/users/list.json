@@ -1,0 +1,51 @@
+{
+  "next_page_id": -1,
+  "users": [
+    {
+      "id": "admin",
+      "uid": "admin@ru1pe2.trueconf.name",
+      "avatar": null,
+      "login_name": "admin",
+      "email": "admin@ru1pe2.trueconf.name",
+      "display_name": "Admin",
+      "first_name": "Admin",
+      "last_name": "",
+      "company": "",
+      "groups": [
+        {
+          "id": "@no_group",
+          "display_name": "Users without group",
+          "rights": []
+        }
+      ],
+      "mobile_phone": "",
+      "work_phone": "",
+      "home_phone": "",
+      "is_active": 1,
+      "status": 0
+    },
+    {
+      "id": "user",
+      "uid": "user@ru1pe2.trueconf.name",
+      "avatar": null,
+      "login_name": "user",
+      "email": "user@tb.com",
+      "display_name": "user",
+      "first_name": "",
+      "last_name": "",
+      "company": "",
+      "groups": [
+        {
+          "id": "@no_group",
+          "display_name": "Users without group",
+          "rights": []
+        }
+      ],
+      "mobile_phone": "",
+      "work_phone": "",
+      "home_phone": "",
+      "is_active": 1,
+      "status": 0
+    }
+  ]
+}

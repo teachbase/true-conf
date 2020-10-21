@@ -1,0 +1,13 @@
+{
+  "login_name": "admin",
+  "email": "admin@teachbase.ru",
+  "display_name": "Admin",
+  "password": "Qwerty",
+  "first_name": "Admin",
+  "last_name": "",
+  "company": "Teachbase",
+  "mobile_phone": "+79876543210",
+  "work_phone": "(8555) 32-32-32",
+  "home_phone": "(8552) 123-123",
+  "is_active": 1
+}

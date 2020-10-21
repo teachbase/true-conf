@@ -1,0 +1,14 @@
+{
+  "error": {
+    "code": 400,
+    "message": "Bad Request",
+    "errors": [
+      {
+        "reason": "uniqueValueAlreadyInUse",
+        "message": "Value is already in use. Please try another.",
+        "locationType": "parameter",
+        "location": "login_name"
+      }
+    ]
+  }
+}

@@ -4,7 +4,7 @@ module TrueConf
   module Entity
     class UserList < TrueConf::Response
       option :next_page_id, proc(&:to_i), optional: true
-      option :users, [Entity::User]
+      option :users, [Entity::User], as: :data
 
       class << self
         def build(*res)
