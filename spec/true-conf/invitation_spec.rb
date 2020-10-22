@@ -131,7 +131,7 @@ RSpec.describe TrueConf::Client do
     it_behaves_like 'returns_forbidden_error'
   end
 
-  describe '#add' do
+  describe '#create' do
     let(:url) { "https://trueconf.local/api/v3.1/conferences/#{conference_id}/invitations?access_token=access_token" }
     let(:body) { File.read('spec/fixtures/invitations/invitation.json') }
 

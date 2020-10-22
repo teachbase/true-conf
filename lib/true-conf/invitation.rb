@@ -2,11 +2,9 @@
 
 module TrueConf
   Client.scope :by_conference do
-    option :conference_id, proc(&:to_s)
-    path { "/conferences/#{conference_id}/invitations" }
-    format 'json'
-
     scope :invitations do
+      path { '/invitations' }
+
       operation :all do
         http_method :get
 
@@ -29,7 +27,7 @@ module TrueConf
 
     scope :by_invitation do
       option :id, proc(&:to_s)
-      path { "/#{id}" }
+      path { "/invitations/#{id}" }
       format 'json'
 
       operation :get do

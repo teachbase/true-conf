@@ -108,4 +108,10 @@ module TrueConf
       response(400, 403, 404) { |*res| Error.build(*res) }
     end
   end
+
+  Client.scope :by_conference do
+    option :conference_id, proc(&:to_s)
+    path { "/conferences/#{conference_id}" }
+    format 'json'
+  end
 end

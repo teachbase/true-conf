@@ -92,9 +92,6 @@ user = client.by_user(id: "andy").delete
 
 user = client.by_user(id: "andy").disconnect
 # => TrueConf::Entity::UserSimple
-
-
-
 ```
 
 ### Invitations
