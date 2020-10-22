@@ -41,6 +41,15 @@ RSpec.describe TrueConf::Client do
     end
   end
 
+  shared_examples 'returns_invitation_list_object' do
+    it 'returns success' do
+      expect(subject).to be_kind_of Array
+      expect(subject.first).to be_kind_of TrueConf::Entity::Invitation
+      expect(subject.first.id).to eq 'admin'
+      expect(subject.first.owner?).to eq true
+    end
+  end
+
   shared_examples 'returns_not_found_error' do
     let(:body) { File.read('spec/fixtures/errors/not_found.json') }
     before { stub_request(:any, //).to_return(status: 404, body: body) }
@@ -61,16 +70,34 @@ RSpec.describe TrueConf::Client do
     end
   end
 
+  shared_examples 'returns_forbidden_error' do
+    let(:body) { File.read('spec/fixtures/errors/forbidden.json') }
+    before { stub_request(:any, //).to_return(status: 403, body: body) }
+
+    it 'returns error' do
+      expect(subject.error?).to eq true
+
+      expect(subject).to be_kind_of TrueConf::Error
+      expect(subject.code).to eq 403
+      expect(subject.message).to eq 'Forbidden'
+
+      expect(subject.errors).to be_kind_of Array
+      expect(subject.errors.first).to be_kind_of TrueConf::ErrorDetail
+      expect(subject.errors.first.reason).to eq 'forbidden'
+      expect(subject.errors.first.message).to eq 'Forbidden'
+    end
+  end
+
   describe '#get' do
     let(:invitation_id) { 'admin' }
     let(:url) { "https://trueconf.local/api/v3.1/conferences/#{conference_id}/invitations/#{invitation_id}?access_token=access_token" }
-    let(:body) { File.read('spec/fixtures/invitation.json') }
+    let(:body) { File.read('spec/fixtures/invitations/invitation.json') }
 
     before  { stub_request(:any, //).to_return(body: body) }
     subject do
       client.by_conference(conference_id: conference_id)
-            .invitations
-            .get(invitation_id: invitation_id)
+            .by_invitation(id: invitation_id)
+            .get
     end
 
     it 'sends a request' do
@@ -80,17 +107,18 @@ RSpec.describe TrueConf::Client do
 
     it_behaves_like 'returns_invitation_object'
     it_behaves_like 'returns_not_found_error'
+    it_behaves_like 'returns_forbidden_error'
   end
 
-  describe '#list' do
+  describe '#all' do
     let(:url) { "https://trueconf.local/api/v3.1/conferences/#{conference_id}/invitations?access_token=access_token" }
-    let(:body) { File.read('spec/fixtures/invitations.json') }
+    let(:body) { File.read('spec/fixtures/invitations/list.json') }
 
     before  { stub_request(:any, //).to_return(body: body) }
     subject do
       client.by_conference(conference_id: conference_id)
             .invitations
-            .list.first
+            .all
     end
 
     it 'sends a request' do
@@ -98,19 +126,21 @@ RSpec.describe TrueConf::Client do
       expect(a_request(:get, url)).to have_been_made
     end
 
-    it_behaves_like 'returns_invitation_object'
+    it_behaves_like 'returns_invitation_list_object'
+    it_behaves_like 'returns_not_found_error'
+    it_behaves_like 'returns_forbidden_error'
   end
 
   describe '#add' do
     let(:url) { "https://trueconf.local/api/v3.1/conferences/#{conference_id}/invitations?access_token=access_token" }
-    let(:body) { File.read('spec/fixtures/invitation.json') }
+    let(:body) { File.read('spec/fixtures/invitations/invitation.json') }
 
     before  { stub_request(:any, //).to_return(body: body) }
 
     subject do
       client.by_conference(conference_id: conference_id)
             .invitations
-            .add(id: 'admin', display_name: 'admin')
+            .create(id: 'admin', display_name: 'admin')
     end
 
     it 'sends a request' do
@@ -120,19 +150,20 @@ RSpec.describe TrueConf::Client do
 
     it_behaves_like 'returns_invitation_object'
     it_behaves_like 'returns_not_found_error'
+    it_behaves_like 'returns_forbidden_error'
   end
 
   describe '#update' do
     let(:invitation_id) { 'admin' }
     let(:url) { "https://trueconf.local/api/v3.1/conferences/#{conference_id}/invitations/#{invitation_id}?access_token=access_token" }
-    let(:body) { File.read('spec/fixtures/invitation.json') }
+    let(:body) { File.read('spec/fixtures/invitations/invitation.json') }
 
     before  { stub_request(:any, //).to_return(body: body) }
 
     subject do
       client.by_conference(conference_id: conference_id)
-            .invitations
-            .update(invitation_id: invitation_id, display_name: 'super admin')
+            .by_invitation(id: invitation_id)
+            .update(display_name: 'super admin')
     end
 
     it 'sends a request' do
@@ -142,19 +173,20 @@ RSpec.describe TrueConf::Client do
 
     it_behaves_like 'returns_invitation_object'
     it_behaves_like 'returns_not_found_error'
+    it_behaves_like 'returns_forbidden_error'
   end
 
   describe '#delete' do
     let(:invitation_id) { 'admin' }
     let(:url) { "https://trueconf.local/api/v3.1/conferences/#{conference_id}/invitations/#{invitation_id}?access_token=access_token" }
-    let(:body) { File.read('spec/fixtures/delete_invitation.json') }
+    let(:body) { File.read('spec/fixtures/invitations/delete.json') }
 
     before  { stub_request(:any, //).to_return(body: body) }
 
     subject do
       client.by_conference(conference_id: conference_id)
-            .invitations
-            .delete(invitation_id: invitation_id)
+            .by_invitation(id: invitation_id)
+            .delete
     end
 
     it 'sends a request' do
@@ -170,5 +202,6 @@ RSpec.describe TrueConf::Client do
     end
 
     it_behaves_like 'returns_not_found_error'
+    it_behaves_like 'returns_forbidden_error'
   end
 end

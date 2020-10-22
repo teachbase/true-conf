@@ -48,7 +48,7 @@ TrueConf::Entity::User
 
 user = client.by_user(id: "andy").get
 user.disabled?   # false
-user.enabled?    #  true
+user.enabled?    # true
 user.not_active? # false
 user.invalid?    # false
 user.offline?    # false
@@ -68,14 +68,14 @@ TrueConf::Entity::UserSimple
 ```
 **Actions**
 ```ruby
-users = client.users.all url_type:  "dynamic", # optional
-                         page_id:   1,         # optional
-                         page_size: 10,        # optional
-                         login_name: "Andy",   # optional
-                         display_name: "Andy", # optional
-                         first_name: "Andy",   # optional
-                         last_name: "",        # optional
-                         email: "andy@tb.com"  # optional
+users = client.users.all url_type:      "dynamic",     # optional
+                         page_id:       1,             # optional
+                         page_size:     10,            # optional
+                         login_name:    "Andy",        # optional
+                         display_name:  "Andy",        # optional
+                         first_name:    "",            # optional
+                         last_name:     "",            # optional
+                         email:         "andy@tb.com"  # optional
 # => TrueConf::Entity::UserList
 
 user = client.users.create(**params)
@@ -98,41 +98,61 @@ user = client.by_user(id: "andy").disconnect
 ```
 
 ### Invitations
-Get Invitation List
-```ruby
-invitations = client.by_conference(conference_id: "3390770247")
-                    .invitations
-                    .list
-```
+https://developers.trueconf.ru/api/server/#api-Conferences_Invitations
 
-Get Invitation
+**Entities**
+
 ```ruby
+TrueConf::Entity::Invitation
+
 invitation = client.by_conference(conference_id: "3390770247")
-                   .invitations
-                   .get(invitation_id: "admin")
+                   .by_invitation(id: "user")
+                   .get
 
+invitation.owner?   # true
 invitation.user?    # true
 invitation.custom?  # false
-invitation.owner?   # true
+
+```
+```ruby
+TrueConf::Entity::InvitationList
 ```
 
-Add Invitation
 ```ruby
-invitation = client.by_conference(conference_id: "3390770247")
-                   .invitations
-                   .add(id: "user", display_name: "user")
+TrueConf::Entity::InvitationSimple
 ```
-Update Invitation
+
+**Actions**
 ```ruby
+# Add Invitation
 invitation = client.by_conference(conference_id: "3390770247")
                    .invitations
-                   .update(invitation_id: "user", display_name: "andy")
-```
-Delete Invitation
-```ruby
-invitation = client.by_conference(conference_id: "3390770247")
+                   .create(id: "user", display_name: "user")
+# => TrueConf::Entity::Invitation
+
+# Get Invitation List
+invitations = client.by_conference(conference_id: "3390770247")
                    .invitations
-                   .delete(invitation_id: "user")
+                   .all
+# => TrueConf::Entity::InvitationList
+
+# Get Invitation
+invitation = client.by_conference(conference_id: "3390770247")
+                   .by_invitation(id: "user")
+                   .get
+# => TrueConf::Entity::Invitation
+
+# Update Invitation
+invitation = client.by_conference(conference_id: "3390770247")
+                   .by_invitation(id: "user")
+                   .update(display_name: "andy")
+# => TrueConf::Entity::Invitation
+
+# Delete Invitation
+invitation = client.by_conference(conference_id: "3390770247")
+                   .by_invitation(id: "user")
+                   .delete
+# => TrueConf::Entity::InvitationSimple
 ```
 
 ### Error
