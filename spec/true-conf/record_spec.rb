@@ -116,7 +116,7 @@ RSpec.describe TrueConf::Client do
   describe '#download' do
     let(:record_id) { 'record.mkv' }
     let(:url) { "https://trueconf.local/api/v3.1/conferences/#{conference_id}/records/#{record_id}/download?access_token=access_token" }
-    let(:body) { File.read('spec/fixtures/records/record.json') }
+    let(:body) { File.read('spec/fixtures/records/example.mp4') }
 
     before  { stub_request(:any, //).to_return(body: body) }
     subject do
@@ -130,7 +130,6 @@ RSpec.describe TrueConf::Client do
       expect(a_request(:get, url)).to have_been_made
     end
 
-    it_behaves_like 'returns_record_object'
     it_behaves_like 'returns_not_found_error'
     it_behaves_like 'returns_forbidden_error'
   end

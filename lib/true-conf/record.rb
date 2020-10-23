@@ -40,7 +40,12 @@ module TrueConf
         http_method :get
         query { options.slice(:url_type) }
 
-        response(200) { |*res| Entity::Record.build(*res) }
+        response(200) do |_, _, body|
+          file = Tempfile.new([File.basename(id, '.*'), File.extname(id)])
+          file.write(*body)
+          file.close
+          file.path
+        end
         response(403, 404) { |*res| Error.build(*res) }
       end
     end

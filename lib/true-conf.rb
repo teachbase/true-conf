@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'evil/client'
+require 'tempfile'
+
 require 'true-conf/client'
 require 'true-conf/conference'
 require 'true-conf/invitation'
