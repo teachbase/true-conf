@@ -2,20 +2,8 @@
 
 module TrueConf
   Client.scope :conferences do
-    operation :get do
-      option :conference_id, proc(&:to_s)
-
-      http_method :get
-      path { "/conferences/#{conference_id}" }
-
-      response(200) do |*res|
-        Entity::Conference.build(*res)
-      end
-
-      response(403, 404) do |*res|
-        Error.build(*res)
-      end
-    end
+    path { '/conferences' }
+    format 'json'
 
     operation :create do
       option :id, proc(&:to_s), optional: true
@@ -35,8 +23,6 @@ module TrueConf
       option :recording, proc(&:to_i), optional: true
 
       http_method :post
-      path { '/conferences' }
-      format 'json'
       body do
         options.slice(:id, :topic, :description, :owner, :type, :schedule, :max_participants,
                       :rights, :allow_guests, :auto_invite, :tags, :url, :webclient_url, :state,
@@ -45,6 +31,19 @@ module TrueConf
 
       response(200) { |*res| Entity::Conference.build(*res) }
       response(400, 403, 404) { |*res| Error.build(*res) }
+    end
+  end
+
+  Client.scope :by_conference do
+    option :conference_id, proc(&:to_s)
+    path { "/conferences/#{conference_id}" }
+    format 'json'
+
+    operation :get do
+      http_method :get
+
+      response(200) { |*res| Entity::Conference.build(*res) }
+      response(403, 404) { |*res| Error.build(*res) }
     end
 
     operation :update do
@@ -66,8 +65,6 @@ module TrueConf
       option :recording, proc(&:to_i), optional: true
 
       http_method :put
-      path { "/conferences/#{conference_id}" }
-      format 'json'
       body do
         options.slice(:id, :topic, :description, :owner, :type, :schedule, :max_participants,
                       :rights, :allow_guests, :auto_invite, :tags, :url, :webclient_url, :state,
@@ -79,39 +76,26 @@ module TrueConf
     end
 
     operation :delete do
-      option :conference_id, proc(&:to_s)
       http_method :delete
-      path { "/conferences/#{conference_id}" }
-      format 'json'
 
       response(200) { |*res| Entity::ConferenceSimple.build(*res) }
       response(400, 403, 404) { |*res| Error.build(*res) }
     end
 
     operation :run do
-      option :conference_id, proc(&:to_s)
       http_method :post
-      path { "/conferences/#{conference_id}/run" }
-      format 'json'
+      path { '/run' }
 
       response(200) { |*res| Entity::ConferenceSimple.build(*res) }
       response(400, 403, 404) { |*res| Error.build(*res) }
     end
 
     operation :stop do
-      option :conference_id, proc(&:to_s)
       http_method :post
-      path { "/conferences/#{conference_id}/stop" }
-      format 'json'
+      path { '/stop' }
 
       response(200) { |*res| Entity::ConferenceSimple.build(*res) }
       response(400, 403, 404) { |*res| Error.build(*res) }
     end
-  end
-
-  Client.scope :by_conference do
-    option :conference_id, proc(&:to_s)
-    path { "/conferences/#{conference_id}" }
-    format 'json'
   end
 end

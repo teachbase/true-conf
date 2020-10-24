@@ -66,10 +66,10 @@ RSpec.describe TrueConf::Client do
   describe '#get' do
     let(:conference_id) { '5576502892' }
     let(:url) { "https://trueconf.local/api/v3.1/conferences/#{conference_id}?access_token=access_token" }
-    let(:body) { File.read('spec/fixtures/conference.json') }
+    let(:body) { File.read('spec/fixtures/conferences/conference.json') }
 
     before  { stub_request(:any, //).to_return(body: body) }
-    subject { client.conferences.get(conference_id: conference_id) }
+    subject { client.by_conference(conference_id: conference_id).get }
 
     it 'sends a request' do
       subject
@@ -83,7 +83,7 @@ RSpec.describe TrueConf::Client do
   describe '#create' do
     let(:params) { JSON.parse(File.read('spec/fixtures/input/conference.json')).transform_keys(&:to_sym) }
     let(:url) { 'https://trueconf.local/api/v3.1/conferences?access_token=access_token' }
-    let(:body) { File.read('spec/fixtures/conference.json') }
+    let(:body) { File.read('spec/fixtures/conferences/conference.json') }
 
     before  { stub_request(:any, //).to_return(body: body) }
 
@@ -104,12 +104,12 @@ RSpec.describe TrueConf::Client do
     let(:conference_id) { '5576502892' }
     let(:params) { JSON.parse(File.read('spec/fixtures/input/conference.json')).transform_keys(&:to_sym) }
     let(:url) { "https://trueconf.local/api/v3.1/conferences/#{conference_id}?access_token=access_token" }
-    let(:body) { File.read('spec/fixtures/conference.json') }
+    let(:body) { File.read('spec/fixtures/conferences/conference.json') }
 
     before  { stub_request(:any, //).to_return(body: body) }
 
     subject do
-      client.conferences.update(conference_id: conference_id, **params)
+      client.by_conference(conference_id: conference_id).update(**params)
     end
 
     it 'sends a request' do
@@ -124,12 +124,12 @@ RSpec.describe TrueConf::Client do
   describe '#delete' do
     let(:conference_id) { '5576502892' }
     let(:url) { "https://trueconf.local/api/v3.1/conferences/#{conference_id}?access_token=access_token" }
-    let(:body) { File.read('spec/fixtures/delete_conference.json') }
+    let(:body) { File.read('spec/fixtures/conferences/delete.json') }
 
     before  { stub_request(:any, //).to_return(body: body) }
 
     subject do
-      client.conferences.delete(conference_id: conference_id)
+      client.by_conference(conference_id: conference_id).delete
     end
 
     it 'sends a request' do
@@ -153,12 +153,12 @@ RSpec.describe TrueConf::Client do
   describe '#run' do
     let(:conference_id) { '5576502892' }
     let(:url) { "https://trueconf.local/api/v3.1/conferences/#{conference_id}/run?access_token=access_token" }
-    let(:body) { File.read('spec/fixtures/run_conference.json') }
+    let(:body) { File.read('spec/fixtures/conferences/run.json') }
 
     before  { stub_request(:any, //).to_return(body: body) }
 
     subject do
-      client.conferences.run(conference_id: conference_id)
+      client.by_conference(conference_id: conference_id).run
     end
 
     it 'sends a request' do
@@ -182,12 +182,12 @@ RSpec.describe TrueConf::Client do
   describe '#stop' do
     let(:conference_id) { '5576502892' }
     let(:url) { "https://trueconf.local/api/v3.1/conferences/#{conference_id}/stop?access_token=access_token" }
-    let(:body) { File.read('spec/fixtures/stop_conference.json') }
+    let(:body) { File.read('spec/fixtures/conferences/stop.json') }
 
     before  { stub_request(:any, //).to_return(body: body) }
 
     subject do
-      client.conferences.stop(conference_id: conference_id)
+      client.by_conference(conference_id: conference_id).stop
     end
 
     it 'sends a request' do
