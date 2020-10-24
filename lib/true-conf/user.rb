@@ -2,8 +2,8 @@
 
 module TrueConf
   Client.scope :users do
-    path { '/users' }
-    format 'json'
+    path { "/users" }
+    format "json"
 
     operation :all do
       option :url_type, proc(&:to_s), optional: true
@@ -18,7 +18,7 @@ module TrueConf
       http_method :get
       query do
         options.slice(:url_type, :page_id, :page_size, :login_name,
-                      :display_name, :first_name, :last_name, :email)
+          :display_name, :first_name, :last_name, :email)
       end
 
       response(200) { |*res| Entity::UserList.build(*res) }
@@ -41,7 +41,7 @@ module TrueConf
       http_method :post
       body do
         options.slice(:login_name, :email, :password, :display_name, :first_name, :last_name,
-                      :company, :mobile_phone, :work_phone, :home_phone, :is_active)
+          :company, :mobile_phone, :work_phone, :home_phone, :is_active)
       end
 
       response(200) { |*res| Entity::User.build(*res) }
@@ -52,7 +52,7 @@ module TrueConf
   Client.scope :by_user do
     option :id, proc(&:to_s)
     path { "/users/#{id}" }
-    format 'json'
+    format "json"
 
     operation :get do
       option :url_type, proc(&:to_s), optional: true
@@ -81,7 +81,7 @@ module TrueConf
       query { options.slice(:url_type) }
       body do
         options.slice(:login_name, :email, :password, :display_name, :first_name, :last_name,
-                      :company, :mobile_phone, :work_phone, :home_phone, :is_active)
+          :company, :mobile_phone, :work_phone, :home_phone, :is_active)
       end
 
       response(200) { |*res| Entity::User.build(*res) }
@@ -97,7 +97,7 @@ module TrueConf
 
     operation :disconnect do
       http_method :post
-      path { '/disconnect' }
+      path { "/disconnect" }
 
       response(200) { |*res| Entity::UserSimple.build(*res) }
       response(400, 403, 404) { |*res| Error.build(*res) }

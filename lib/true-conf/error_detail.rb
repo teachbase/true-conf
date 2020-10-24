@@ -2,8 +2,8 @@
 
 module TrueConf
   class ErrorDetail
-    extend  Dry::Initializer
-    extend  TrueConf::Callable
+    extend Dry::Initializer
+    extend TrueConf::Callable
     include TrueConf::Optional
 
     option :reason, proc(&:to_s)

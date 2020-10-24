@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './schedule'
+require_relative "./schedule"
 
 module TrueConf
   module Entity

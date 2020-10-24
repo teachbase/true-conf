@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative './error_detail'
+require_relative "./error_detail"
 
 module TrueConf
   class Error < TrueConf::Response
-    extend  Dry::Initializer
-    extend  TrueConf::Callable
+    extend Dry::Initializer
+    extend TrueConf::Callable
     include TrueConf::Optional
 
     option :code, proc(&:to_i)

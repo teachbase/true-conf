@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'oauth2'
-require 'pry'
+require "oauth2"
+require "pry"
 
 module TrueConf
   class Client < Evil::Client
     option :client_id, proc(&:to_s)
     option :client_secret, proc(&:to_s)
     option :api_server, proc(&:to_s)
-    option :token_url, proc(&:to_s), default: -> { '/oauth2/v1/token' }
-    option :version, proc(&:to_s), default: -> { '3.1' }
+    option :token_url, proc(&:to_s), default: -> { "/oauth2/v1/token" }
+    option :version, proc(&:to_s), default: -> { "3.1" }
 
-    format 'json'
+    format "json"
     path { "https://#{api_server}/api/v#{version}" }
 
     class Resolver::Security < Resolver

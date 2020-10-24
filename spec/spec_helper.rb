@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 begin
-  require 'pry'
+  require "pry"
 rescue LoadError
   nil
 end
 
-require 'true-conf'
-require 'webmock/rspec'
+require "true-conf"
+require "webmock/rspec"
 
 RSpec.configure do |config|
   config.order = :random

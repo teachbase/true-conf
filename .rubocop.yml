@@ -1,3 +1,9 @@
+require:
+  - standard/cop/semantic_blocks
+
+inherit_gem:
+  standard: config/base.yml
+
 AllCops:
   Exclude:
     - "bin/*"
@@ -5,8 +11,12 @@ AllCops:
     - "Gemfile"
     - "vendor/**/*"
     - "gemfiles/**/*"
+    - ".github/**/*"
   DisplayCopNames: true
   TargetRubyVersion: 2.5
+
+Standard/SemanticBlocks:
+  Enabled: false
 
 Style/FrozenStringLiteralComment:
   Enabled: true
@@ -16,14 +26,6 @@ Style/TrailingCommaInArrayLiteral:
 
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: no_comma
-
-Layout/ParameterAlignment:
-  EnforcedStyle: with_first_parameter
-
-# See https://github.com/rubocop-hq/rubocop/issues/4222
-Lint/AmbiguousBlockAssociation:
-  Exclude:
-    - "spec/**/*"
 
 Naming/FileName:
   Exclude:

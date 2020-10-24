@@ -15,7 +15,7 @@ module TrueConf
     class << self
       def build(*res)
         body = res.last
-        attr = name.split('::').last.downcase
+        attr = name.split("::").last.downcase
         new JSON.parse(body.first)[attr]
       end
 

@@ -5,6 +5,6 @@ module TrueConf
     def call(*args)
       new(*args)
     end
-    alias [] call
+    alias_method :[], :call
   end
 end

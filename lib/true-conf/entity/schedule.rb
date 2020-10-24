@@ -3,8 +3,8 @@
 module TrueConf
   module Entity
     class Schedule
-      extend  Dry::Initializer
-      extend  TrueConf::Callable
+      extend Dry::Initializer
+      extend TrueConf::Callable
       include TrueConf::Optional
 
       SCHEDULE_TYPE = {

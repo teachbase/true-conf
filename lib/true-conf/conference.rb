@@ -2,8 +2,8 @@
 
 module TrueConf
   Client.scope :conferences do
-    path { '/conferences' }
-    format 'json'
+    path { "/conferences" }
+    format "json"
 
     operation :create do
       option :id, proc(&:to_s), optional: true
@@ -25,8 +25,8 @@ module TrueConf
       http_method :post
       body do
         options.slice(:id, :topic, :description, :owner, :type, :schedule, :max_participants,
-                      :rights, :allow_guests, :auto_invite, :tags, :url, :webclient_url, :state,
-                      :recording)
+          :rights, :allow_guests, :auto_invite, :tags, :url, :webclient_url, :state,
+          :recording)
       end
 
       response(200) { |*res| Entity::Conference.build(*res) }
@@ -37,7 +37,7 @@ module TrueConf
   Client.scope :by_conference do
     option :conference_id, proc(&:to_s)
     path { "/conferences/#{conference_id}" }
-    format 'json'
+    format "json"
 
     operation :get do
       http_method :get
@@ -67,8 +67,8 @@ module TrueConf
       http_method :put
       body do
         options.slice(:id, :topic, :description, :owner, :type, :schedule, :max_participants,
-                      :rights, :allow_guests, :auto_invite, :tags, :url, :webclient_url, :state,
-                      :recording)
+          :rights, :allow_guests, :auto_invite, :tags, :url, :webclient_url, :state,
+          :recording)
       end
 
       response(200) { |*res| Entity::Conference.build(*res) }
@@ -84,7 +84,7 @@ module TrueConf
 
     operation :run do
       http_method :post
-      path { '/run' }
+      path { "/run" }
 
       response(200) { |*res| Entity::ConferenceSimple.build(*res) }
       response(400, 403, 404) { |*res| Error.build(*res) }
@@ -92,7 +92,7 @@ module TrueConf
 
     operation :stop do
       http_method :post
-      path { '/stop' }
+      path { "/stop" }
 
       response(200) { |*res| Entity::ConferenceSimple.build(*res) }
       response(400, 403, 404) { |*res| Error.build(*res) }

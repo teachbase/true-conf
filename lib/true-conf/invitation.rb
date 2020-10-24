@@ -3,7 +3,7 @@
 module TrueConf
   Client.scope :by_conference do
     scope :invitations do
-      path { '/invitations' }
+      path { "/invitations" }
 
       operation :all do
         http_method :get
@@ -28,7 +28,7 @@ module TrueConf
     scope :by_invitation do
       option :id, proc(&:to_s)
       path { "/invitations/#{id}" }
-      format 'json'
+      format "json"
 
       operation :get do
         http_method :get

@@ -3,8 +3,8 @@
 module TrueConf
   Client.scope :by_conference do
     scope :records do
-      path { '/records' }
-      format 'json'
+      path { "/records" }
+      format "json"
 
       operation :all do
         option :url_type, proc(&:to_s), optional: true
@@ -21,7 +21,7 @@ module TrueConf
       option :id, proc(&:to_s)
 
       path { "/records/#{id}" }
-      format 'json'
+      format "json"
 
       operation :get do
         option :url_type, proc(&:to_s), optional: true
@@ -34,14 +34,14 @@ module TrueConf
       end
 
       operation :download do
-        path { '/download' }
+        path { "/download" }
         option :url_type, proc(&:to_s), optional: true
 
         http_method :get
         query { options.slice(:url_type) }
 
         response(200) do |_, _, body|
-          file = Tempfile.new([File.basename(id, '.*'), File.extname(id)])
+          file = Tempfile.new([File.basename(id, ".*"), File.extname(id)])
           file.write(*body)
           file.close
           file.path

@@ -28,8 +28,8 @@ module TrueConf
 
         http_method :post
         path { "/conferences/#{conference_id}/participants" }
-        format 'json'
-        body { { participant_id: participant_id } }
+        format "json"
+        body { {participant_id: participant_id} }
 
         response(200) { |*res| Entity::Participant.build(*res) }
         response(400, 403, 404) { |*res| Error.build(*res) }
