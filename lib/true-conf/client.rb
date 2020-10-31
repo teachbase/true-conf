@@ -9,7 +9,7 @@ module TrueConf
     option :client_secret, proc(&:to_s)
     option :api_server, proc(&:to_s)
     option :token_url, proc(&:to_s), default: -> { "/oauth2/v1/token" }
-    option :version, proc(&:to_s), default: -> { "3.1" }
+    option :version, proc(&:to_s), default: -> { "v3.1" }
 
     format "json"
     path { "https://#{api_server}/api/#{version}" }
