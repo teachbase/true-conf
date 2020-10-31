@@ -12,7 +12,7 @@ module TrueConf
     option :version, proc(&:to_s), default: -> { "3.1" }
 
     format "json"
-    path { "https://#{api_server}/api/v#{version}" }
+    path { "https://#{api_server}/api/#{version}" }
 
     class Resolver::Security < Resolver
       def access_token(client_id, client_secret)

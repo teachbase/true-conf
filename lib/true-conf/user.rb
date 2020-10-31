@@ -41,7 +41,7 @@ module TrueConf
       http_method :post
       body do
         options.slice(:login_name, :email, :password, :display_name, :first_name, :last_name,
-          :company, :mobile_phone, :work_phone, :home_phone, :is_active)
+                      :company, :mobile_phone, :work_phone, :home_phone, :is_active)
       end
 
       response(200) { |*res| Entity::User.build(*res) }
