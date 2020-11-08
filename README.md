@@ -1,8 +1,6 @@
-# TrueConf Server API Client [![TrueConf](https://circleci.com/gh/paderinandrey/true-conf.svg?style=svg)](https://circleci.com/gh/paderinandrey/true-conf)
+# TrueConf Server API Client
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/true/conf`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+[![TrueConf](https://circleci.com/gh/paderinandrey/true-conf.svg?style=svg)](https://circleci.com/gh/paderinandrey/true-conf)
 
 ## Installation
 
@@ -24,15 +22,15 @@ Or install it yourself as:
 Initialize a client with `client_id` and `client_secret`:
 
 ```ruby
-client = TrueConf::Client.new client_id: <client_id>,    # required
-                              client_secret: <client_secret>, # required
-                              api_server: <server_name>, # required
-                              version: '3.2' # optional, default: 3.2
+client = TrueConf::Client.new client_id:     '<client_id>',    # required
+                              client_secret: '<client_secret>', # required
+                              api_server:    '<server_name>', # required
+                              version:       '3.2' # optional, default: 3.2
 ```
 
 ```ruby
-success?
-error?
+client.success?
+client.error?
 ```
 
 ### Conferences
