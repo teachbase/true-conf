@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    true-conf (0.1.0)
+    true-conf (0.1.1)
       evil-client (~> 3.0)
       oauth2 (~> 1.4)
 
