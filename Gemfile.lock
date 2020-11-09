@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    true-conf (0.1.1)
+    true-conf (0.1.2)
       evil-client (~> 3.0)
       oauth2 (~> 1.4)
 
@@ -23,8 +23,9 @@ GEM
       mime-types (~> 3.1)
       rack (~> 2)
       tram-policy (>= 0.3.1, < 3)
-    faraday (1.0.1)
+    faraday (1.1.0)
       multipart-post (>= 1.2, < 3)
+      ruby2_keywords
     hashdiff (1.0.1)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
@@ -32,7 +33,7 @@ GEM
     method_source (1.0.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2020.0512)
+    mime-types-data (3.2020.1104)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -85,6 +86,7 @@ GEM
       rubocop (>= 0.87.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.10.1)
+    ruby2_keywords (0.0.2)
     simplecov (0.19.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
