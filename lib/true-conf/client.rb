@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require "oauth2"
-require "pry"
-
 module TrueConf
   class Client < Evil::Client
     option :client_id, proc(&:to_s)
