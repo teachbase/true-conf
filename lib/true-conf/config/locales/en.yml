@@ -1,0 +1,11 @@
+---
+en:
+  evil:
+    client:
+      errors:
+        true_conf/client:
+          invalid_auth_method: "Invalid auth method"
+          token_missed: API token missed
+          client_id_missed: Client ID missed
+          client_secret_missed: Client Secret missed
+          unsupported_api_version: Unsupported api version on TrueConf server

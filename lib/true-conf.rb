@@ -5,7 +5,7 @@ require "oauth2"
 require "tempfile"
 
 require "true-conf/client"
-require "true-conf/types/auth_method"
+require "true-conf/types/auth_method_type"
 require "true-conf/conference"
 require "true-conf/invitation"
 require "true-conf/participant"

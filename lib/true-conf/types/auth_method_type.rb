@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module TrueConf
-  class AuthMethod < String
+  class AuthMethodType < String
     extend TrueConf::Callable
 
-    AUTH_METHODS = %w[oauth token].freeze
+    METHODS = %w[oauth token].freeze
 
-    AUTH_METHODS.each do |method|
+    METHODS.each do |method|
       define_method("#{method}?") do
         @auth_method == method
       end
@@ -16,7 +16,6 @@ module TrueConf
 
     def initialize(value)
       @auth_method = value.to_s
-      raise TrueConf::ParameterValueNotPermitted unless AUTH_METHODS.include?(@auth_method)
       super @auth_method
     end
   end

@@ -1,7 +1,10 @@
 # TrueConf Server API Client
 
+[![Gem Version][gem-badger]][gem]
 [![TrueConf](https://circleci.com/gh/paderinandrey/true-conf.svg?style=svg)](https://circleci.com/gh/paderinandrey/true-conf)
 
+[gem-badger]: https://img.shields.io/gem/v/true-conf.svg?style=flat&color=blue
+[gem]: https://rubygems.org/gems/true-conf
 ## Installation
 
 Add this line to your application's Gemfile:

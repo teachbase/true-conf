@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 require "true-conf/callable"
-require "true-conf/types/auth_method"
+require "true-conf/types/auth_method_type"
+
+I18n.load_path += [File.expand_path("../config/locales/en.yml", __FILE__)]
 
 module TrueConf
   class Client < Evil::Client
-    option :auth_method, AuthMethod, default: -> { :oauth }
+    option :auth_method, AuthMethodType, default: -> { "oauth" }
     option :client_id, proc(&:to_s), optional: true
     option :client_secret, proc(&:to_s), optional: true
     option :client_token, proc(&:to_s), optional: true
@@ -13,6 +15,11 @@ module TrueConf
     option :token_url, proc(&:to_s), default: -> { "/oauth2/v1/token" }
     option :version, proc(&:to_s), default: -> { "v3.1" }
 
+    validate do
+      return if AuthMethodType::METHODS.include?(auth_method)
+
+      errors.add :invalid_auth_method, field: "auth_method", level: "error"
+    end
     validate { errors.add :token_missed if (auth_method.token? && client_token.nil?) }
     validate { errors.add :client_id_missed if (auth_method.oauth? && client_id.nil?) }
     validate { errors.add :client_secret_missed if (auth_method.oauth? && client_secret.nil?) }
