@@ -22,11 +22,19 @@ Or install it yourself as:
     $ gem install true-conf
 
 ## Usage
-Initialize a client with `client_id` and `client_secret`:
+The TrueConf API uses OAuth2 or Token to authenticate API request. By defaut, a OAuth2 client will be used.
 
 ```ruby
-client = TrueConf::Client.new client_id:     '<client_id>',    # required
+# OAuth
+client = TrueConf::Client.new auth_method:   'oauth', # default: oauth
+                              client_id:     '<client_id>',    # required
                               client_secret: '<client_secret>', # required
+                              api_server:    '<server_name>', # required
+                              version:       '3.2' # optional, default: 3.2
+
+# Token
+client = TrueConf::Client.new auth_method:   'token',
+                              client_token:  '<client_token>', # required
                               api_server:    '<server_name>', # required
                               version:       '3.2' # optional, default: 3.2
 ```
@@ -164,7 +172,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the True::Conf project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/true-conf/blob/master/CODE_OF_CONDUCT.md).
