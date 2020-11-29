@@ -31,9 +31,9 @@ RSpec.describe TrueConf::Client do
       expect(subject.start_time.timezone).to eq "Europe/London"
       expect(subject.duration).to eq 190
       expect(subject.end_time).to be_kind_of TrueConf::Entity::DateTime
-      expect(subject.end_time.date).to eq  "2020-10-31 23:08:55.306514"
+      expect(subject.end_time.date).to eq "2020-10-31 23:08:55.306514"
       expect(subject.end_time.timezone_type).to eq 3
-      expect(subject.end_time.timezone).to eq  "Europe/London"
+      expect(subject.end_time.timezone).to eq "Europe/London"
     end
   end
 

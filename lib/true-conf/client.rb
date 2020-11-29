@@ -20,9 +20,9 @@ module TrueConf
 
       errors.add :invalid_auth_method, field: "auth_method", level: "error"
     end
-    validate { errors.add :token_missed if (auth_method.token? && client_token.nil?) }
-    validate { errors.add :client_id_missed if (auth_method.oauth? && client_id.nil?) }
-    validate { errors.add :client_secret_missed if (auth_method.oauth? && client_secret.nil?) }
+    validate { errors.add :token_missed if auth_method.token? && client_token.nil? }
+    validate { errors.add :client_id_missed if auth_method.oauth? && client_id.nil? }
+    validate { errors.add :client_secret_missed if auth_method.oauth? && client_secret.nil? }
     validate { errors.add :unsupported_api_version unless %w[v3.1 v3.2].include?(version) }
 
     format "json"
