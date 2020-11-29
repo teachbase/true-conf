@@ -1,0 +1,68 @@
+{
+  "cnt": 3,
+  "list": [
+    {
+      "conference_id": "0000001c@ru1pe2.trueconf.name#vcs",
+      "named_conf_id": "8169600686",
+      "topic": "first conf",
+      "class": 10,
+      "type": 5,
+      "subtype": 0,
+      "owner": "admin@ru1pe2.trueconf.name",
+      "participant_count": 1,
+      "start_time": {
+        "date": "2020-10-31 23:37:55.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/London"
+      },
+      "duration": 4,
+      "end_time": {
+        "date": "2020-10-31 23:37:58.585874",
+        "timezone_type": 3,
+        "timezone": "Europe\/London"
+      }
+    },
+    {
+      "conference_id": "00000003@ru1pe2.trueconf.name#vcs",
+      "named_conf_id": "0415605552",
+      "topic": "first conf",
+      "class": 10,
+      "type": 5,
+      "subtype": 0,
+      "owner": "admin@ru1pe2.trueconf.name",
+      "participant_count": 1,
+      "start_time": {
+        "date": "2020-10-03 19:43:14.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/London"
+      },
+      "duration": 116,
+      "end_time": {
+        "date": "2020-10-03 19:45:10.113041",
+        "timezone_type": 3,
+        "timezone": "Europe\/London"
+      }
+    },
+    {
+      "conference_id": "00000002@ru1pe2.trueconf.name#vcs",
+      "named_conf_id": "0415605552",
+      "topic": "first conf",
+      "class": 10,
+      "type": 5,
+      "subtype": 0,
+      "owner": "admin@ru1pe2.trueconf.name",
+      "participant_count": 0,
+      "start_time": {
+        "date": "2020-10-03 18:21:58.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/London"
+      },
+      "duration": 101,
+      "end_time": {
+        "date": "2020-10-03 18:23:38.630053",
+        "timezone_type": 3,
+        "timezone": "Europe\/London"
+      }
+    }
+  ]
+}

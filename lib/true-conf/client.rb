@@ -41,7 +41,7 @@ module TrueConf
     end
 
     security do
-      token = auth_method.oauth? ? access_token(client_id, client_secret) : token
+      token = auth_method.oauth? ? access_token(client_id, client_secret) : client_token
       token_auth(token, inside: :query)
     end
   end

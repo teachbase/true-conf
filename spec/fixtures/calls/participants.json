@@ -1,0 +1,51 @@
+{
+  "cnt": 2,
+  "list": [
+    {
+      "app_id": "3E5BCC44DE50C1F5DA9EC8D98C2BB0C1",
+      "avg_cpu_load": 0,
+      "avg_sent_fps": 14.762162162162159,
+      "bitrate_in": 56,
+      "bitrate_out": 168,
+      "call_id": "user@ru1pe2.trueconf.name",
+      "display_name": "user",
+      "duration": 190,
+      "join_time": {
+        "date": "2020-10-31 23:05:45.201770",
+        "timezone_type": 3,
+        "timezone": "Europe\/London"
+      },
+      "leave_reason": 4,
+      "leave_time": {
+        "date": "2020-10-31 23:08:55.294117",
+        "timezone_type": 3,
+        "timezone": "Europe\/London"
+      },
+      "video_h": 360,
+      "video_w": 640
+    },
+    {
+      "app_id": "CE2A60BD85AAF38F124A0D9289A2F8C7",
+      "avg_cpu_load": 0,
+      "avg_sent_fps": 14.811594202898551,
+      "bitrate_in": 176,
+      "bitrate_out": 376,
+      "call_id": "admin@ru1pe2.trueconf.name",
+      "display_name": "admin",
+      "duration": 74,
+      "join_time": {
+        "date": "2020-10-31 23:07:41.318980",
+        "timezone_type": 3,
+        "timezone": "Europe\/London"
+      },
+      "leave_reason": 4,
+      "leave_time": {
+        "date": "2020-10-31 23:08:55.301134",
+        "timezone_type": 3,
+        "timezone": "Europe\/London"
+      },
+      "video_h": 360,
+      "video_w": 640
+    }
+  ]
+}

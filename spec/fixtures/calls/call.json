@@ -1,0 +1,21 @@
+{
+  "conference_id": "0000001b@ru1pe2.trueconf.name#vcs",
+  "named_conf_id": "1067013335",
+  "topic": "test webinar",
+  "class": 10,
+  "type": 5,
+  "subtype": 0,
+  "owner": "admin@ru1pe2.trueconf.name",
+  "participant_count": 2,
+  "start_time": {
+    "date": "2020-10-31 23:05:45.000000",
+    "timezone_type": 3,
+    "timezone": "Europe\/London"
+  },
+  "duration": 190,
+  "end_time": {
+    "date": "2020-10-31 23:08:55.306514",
+    "timezone_type": 3,
+    "timezone": "Europe\/London"
+  }
+}
