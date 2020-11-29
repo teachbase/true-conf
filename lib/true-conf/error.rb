@@ -12,4 +12,6 @@ module TrueConf
     option :message, proc(&:to_s)
     option :errors, [TrueConf::ErrorDetail], optional: true
   end
+
+  class ParameterValueNotPermitted < StandardError; end
 end
