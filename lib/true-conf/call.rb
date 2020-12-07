@@ -33,7 +33,7 @@ module TrueConf
     scope :by_call do
       option :id, proc(&:to_s)
 
-      path { "/calls/#{id}" }
+      path { "/calls/#{URI.encode_www_form_component(id)}" }
       format "json"
 
       operation :get do
