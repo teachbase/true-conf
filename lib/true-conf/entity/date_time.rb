@@ -8,6 +8,10 @@ module TrueConf
       option :date, proc(&:to_s)
       option :timezone_type, proc(&:to_i)
       option :timezone, proc(&:to_s)
+
+      def as_time
+        Time.parse(date)
+      end
     end
   end
 end
