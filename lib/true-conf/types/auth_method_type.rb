@@ -4,7 +4,7 @@ module TrueConf
   class AuthMethodType < String
     extend TrueConf::Callable
 
-    METHODS = %w[oauth token].freeze
+    METHODS = %w[oauth api_key].freeze
 
     METHODS.each do |method|
       define_method("#{method}?") do

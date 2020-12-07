@@ -22,60 +22,60 @@ Or install it yourself as:
     $ gem install true-conf
 
 ## Usage
-The TrueConf API uses OAuth2 or Token to authenticate API request. By defaut, a OAuth2 client will be used.
+The TrueConf API uses OAuth2 or API Key to authenticate API request. By defaut, a OAuth2 client will be used.
 
 ```ruby
 # OAuth
-client = TrueConf::Client.new auth_method:   'oauth', # default: oauth
-                              client_id:     '<client_id>',    # required
-                              client_secret: '<client_secret>', # required
-                              api_server:    '<server_name>', # required
-                              version:       '3.2' # optional, default: 3.2
+response = TrueConf::Client.new auth_method:   'oauth', # default: oauth
+                                client_id:     '<client_id>',    # required
+                                client_secret: '<client_secret>', # required
+                                api_server:    '<server_name>', # required
+                                version:       '3.2' # optional, default: 3.2
 
-# Token
-client = TrueConf::Client.new auth_method:   'token',
-                              client_token:  '<client_token>', # required
-                              api_server:    '<server_name>', # required
-                              version:       '3.2' # optional, default: 3.2
-```
+# API Key
+response = TrueConf::Client.new auth_method:   'api_key',
+                                api_key:       '<api_key>', # required
+                                api_server:    '<server_name>', # required
+                                version:       '3.2' # optional, default: 3.2
 
-```ruby
-client.success?
-client.error?
+# => TrueConf::Client
+response.success?
+response.error?
 ```
 
 ### Conferences
+https://developers.trueconf.ru/api/server/#api-Conferences
 
+```ruby
+params = {
+    topic: "My first conference"
+    owner: "andy@example.com",
+    type: 0,
+    schedule: { type: -1 }
+}
+
+conference = client.conferences.create(**params)
+# => TrueConf::Entity::Conference
+
+conference = client.by_conference(conference_id: 12345).get
+# => TrueConf::Entity::Conference
+
+conference = client.by_conference(conference_id: 12345).update(**params)
+# => TrueConf::Entity::Conference
+
+conference = client.by_conference(conference_id: 12345).delete
+# => TrueConf::Entity::ConferenceSimple
+
+conference = client.by_conference(conference_id: 12345).start
+# => TrueConf::Entity::ConferenceSimple
+
+conference = client.by_conference(conference_id: 12345).stop
+# => TrueConf::Entity::ConferenceSimple
+```
 
 ### Users
 https://developers.trueconf.ru/api/server/#api-Users
 
-**Entities**
-
-```ruby
-TrueConf::Entity::User
-
-user = client.by_user(id: "andy").get
-user.disabled?   # false
-user.enabled?    # true
-user.not_active? # false
-user.invalid?    # false
-user.offline?    # false
-user.online?     # true
-user.busy?       # false
-user.multihost?  # false
-
-```
-```ruby
-TrueConf::Entity::UserList
-
-```
-
-```ruby
-TrueConf::Entity::UserSimple
-
-```
-**Actions**
 ```ruby
 users = client.users.all url_type:      "dynamic",     # optional
                          page_id:       1,             # optional
@@ -92,6 +92,14 @@ user = client.users.create(**params)
 
 user = client.by_user(id: "andy").get
 # => TrueConf::Entity::User
+user.disabled?   # false
+user.enabled?    # true
+user.not_active? # false
+user.invalid?    # false
+user.offline?    # false
+user.online?     # true
+user.busy?       # false
+user.multihost?  # false
 
 user = client.by_user(id: "andy").update(**params)
 # => TrueConf::Entity::User
@@ -106,29 +114,6 @@ user = client.by_user(id: "andy").disconnect
 ### Invitations
 https://developers.trueconf.ru/api/server/#api-Conferences_Invitations
 
-**Entities**
-
-```ruby
-TrueConf::Entity::Invitation
-
-invitation = client.by_conference(conference_id: "3390770247")
-                   .by_invitation(id: "user")
-                   .get
-
-invitation.owner?   # true
-invitation.user?    # true
-invitation.custom?  # false
-
-```
-```ruby
-TrueConf::Entity::InvitationList
-```
-
-```ruby
-TrueConf::Entity::InvitationSimple
-```
-
-**Actions**
 ```ruby
 # Add Invitation
 invitation = client.by_conference(conference_id: "3390770247")
@@ -148,6 +133,10 @@ invitation = client.by_conference(conference_id: "3390770247")
                    .get
 # => TrueConf::Entity::Invitation
 
+invitation.owner?   # true
+invitation.user?    # true
+invitation.custom?  # false
+
 # Update Invitation
 invitation = client.by_conference(conference_id: "3390770247")
                    .by_invitation(id: "user")
@@ -161,13 +150,39 @@ invitation = client.by_conference(conference_id: "3390770247")
 # => TrueConf::Entity::InvitationSimple
 ```
 
-### Error
+### Records
+https://developers.trueconf.ru/api/server/#api-Conferences_Records
+```ruby
+records = client.by_conference(conference_id: "3390770247").records.all
+# => TrueConf::Entity::RecordList
 
+record = client.by_conference(conference_id: "3390770247").by_record(id: 12345).get
+# => TrueConf::Entity::Record
 
+record = client.by_conference(conference_id: "3390770247").by_record(id: 12345).download
+# => TrueConf::Entity::Record
+```
+### Calls
+https://developers.trueconf.ru/api/server/#api-Logs
+
+```ruby
+calls = client.logs.calls.all()
+# => TrueConf::Entity::CallList
+
+call = client.logs.by_call(id: "3390770247").get
+# => TrueConf::Entity::Call
+
+participants = client.logs.by_call(id: "3390770247").participants
+# => TrueConf::Entity::CallParticipantList
+```
 
 ## Contributing
+Everyone is encouraged to help improve this project. Here are a few ways you can help:
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/true-conf. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+- [Report bugs](https://github.com/paderinandrey/true-conf/issues)
+- Fix bugs and [submit pull requests](https://github.com/paderinandrey/true-conf/pulls)
+- Write, clarify, or fix documentation
+- Suggest or add new features
 
 ## License
 
