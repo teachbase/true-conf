@@ -2,7 +2,7 @@
 
 RSpec.describe TrueConf::Client do
   let(:settings) { {client_id: "client_id", client_secret: "client_secret", api_server: "trueconf.local"} }
-  let(:client) { described_class.new(settings) }
+  let(:client) { described_class.new(**settings) }
   let(:conference_id) { "5576502892" }
 
   before do

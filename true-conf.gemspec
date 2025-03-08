@@ -18,12 +18,11 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.required_ruby_version = ">= 2.5"
+  spec.required_ruby_version = ">= 2.7"
 
-  spec.add_runtime_dependency "evil-client", "~> 3.0"
+  spec.add_runtime_dependency "evil-client", "~> 3.2"
   spec.add_runtime_dependency "oauth2", "~> 1.4"
 
-  spec.add_development_dependency "bundler", "~> 1.17"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.4"
   spec.add_development_dependency "rubocop", "~> 0.92.0"
